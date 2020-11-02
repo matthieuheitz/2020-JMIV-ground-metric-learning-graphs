@@ -2,14 +2,14 @@ CFLAGS=-Wall -fPIC -fopenmp
 CPPFLAGS=-Wall -fPIC -fopenmp
 LDFLAGS=-shared
 
+all: dynamic_c clean
+
 dynamic_c: ckernels.c
 	gcc $(CFLAGS) -c ckernels.c
 	gcc $(LDFLAGS) ckernels.o -o libckernels.so
 
 test_c: ckernels.c
 	gcc $(CFLAGS) ckernels.c -o test_ckernel -lm
-
-all: dynamic_c
 
 tests: test_c
 

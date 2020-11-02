@@ -6,6 +6,8 @@ Matthieu Heitz, Nicolas Bonneel, David Coeurjolly, Marco Cuturi, and Gabriel Pey
 
 #### Requirements
 
+- ##### Environment
+
 The conda GMLG environment can be set with:
 ```
 conda env create -f environement.yml
@@ -17,6 +19,11 @@ the CHOLMOD library of the larger SuiteSparse library.
 On debian-based systems, you can install the `libcholmod` package.
 Otherwise, you can use the LU solver which is twice slower but don't require additional packages (it's in `scipy`).
 In that case, specify '--SD_algo LU' when using the scripts.
+
+- ##### C file
+
+In order to have faster convolutions for color transfer, we use a native C implementation.
+Compile the `ckernels.c` by simply running `make` in the main directory, which will compile to a `libckernels.so`.
 
 
 #### Starter files:
