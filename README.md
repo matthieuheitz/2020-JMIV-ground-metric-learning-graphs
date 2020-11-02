@@ -18,7 +18,7 @@ The fastest version of the code (using a Cholesky solver) requires the Python pa
 the CHOLMOD library of the larger SuiteSparse library.
 On debian-based systems, you can install the `libcholmod` package.
 Otherwise, you can use the LU solver which is twice slower but don't require additional packages (it's in `scipy`).
-In that case, specify '--SD_algo LU' when using the scripts.
+In that case, specify `--SD_algo LU` when using the scripts.
 
 - ##### C file
 
@@ -48,16 +48,20 @@ In order to create your own histogram sequence (`.npy` files) in 2D, use one of 
 From an existing dataset:
 ```shell script
 # Generate Figure 3
-python ml_kinterp2.py data/toydataF3 -o test-F3 --loss_num 1 -L 50 --t_heat 3e-3 --k_heat 100 --metric_regul_ro 0 --metric_regul_ro_lap 0.03 --max_iter 1000 -f 20
+python ml_kinterp2.py data/toydataF3 -o test-F3 --loss_num 1 -L 50 --t_heat 3e-3 --k_heat 100 \
+    --metric_regul_ro 0 --metric_regul_ro_lap 0.03 --max_iter 1000 -f 20
 
 # Generate Figure 4
-python ml_kinterp2.py data/toydataF4 -o test-F4 --loss_num 4 -L 50 --t_heat 3e-3 --k_heat 100 --metric_regul_ro 0 --metric_regul_ro_lap 0.03 --max_iter 1000 -f 20
+python ml_kinterp2.py data/toydataF4 -o test-F4 --loss_num 4 -L 50 --t_heat 3e-3 --k_heat 100 \
+    --metric_regul_ro 0 --metric_regul_ro_lap 0.03 --max_iter 1000 -f 20
 
 # Generate Figure 5
-python ml_kinterp2.py data/toydataF5 -o test-F5 --loss_num 2 -L 50 --t_heat 3e-3 --k_heat 100 --metric_regul_ro 1 --metric_regul_ro_lap 1 --max_iter 1000 -f 10
+python ml_kinterp2.py data/toydataF5 -o test-F5 --loss_num 2 -L 50 --t_heat 3e-3 --k_heat 100 \
+    --metric_regul_ro 1 --metric_regul_ro_lap 1 --max_iter 1000 -f 10
 
 # Generate Figure 6
-python ml_kinterp2.py data/toydataF6 -o test-F6 --loss_num 2 -L 50 --t_heat 3e-3 --k_heat 100 --metric_regul_ro 0 --metric_regul_ro_lap 10 --max_iter 1000 -f 20
+python ml_kinterp2.py data/toydataF6 -o test-F6 --loss_num 2 -L 50 --t_heat 3e-3 --k_heat 100 \
+    --metric_regul_ro 0 --metric_regul_ro_lap 10 --max_iter 1000 -f 20
 ```
 
 ## Learning on a 3-D grid
@@ -67,7 +71,8 @@ python ml_kinterp2.py data/toydataF6 -o test-F6 --loss_num 2 -L 50 --t_heat 3e-3
 Learn a metric on the `seldovia2` dataset:
 
 ```shell script
-python ml_color_timelapse.py data/seldovia2 -o test-ml-color -n 16 --loss_num 2 -L 50 --t_heat 1e-3 --k_heat 20 --metric_regul_ro 0 --metric_regul_ro_lap 1 --max_iter 500 -f 50
+python ml_color_timelapse.py data/seldovia2 -o test-ml-color -n 16 --loss_num 2 -L 50 \
+    --t_heat 1e-3 --k_heat 20 --metric_regul_ro 0 --metric_regul_ro_lap 1 --max_iter 500 -f 50
 ```
 
 This script, contrary to the previous one (in 2D) doesn't require `.npy` files, you can directly give it images and
@@ -93,16 +98,16 @@ an interpolation and then test different color transfers using that same interpo
 Examples of how to use this script, to generate images of Figure 18.
 ```shell script
 # Performing both tasks in the same script:
-python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.npy -o test-color-transfers \
-    --hist_interp input --num_prolong_hi 1 \
+python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.npy \
+    -o test-color-transfers --hist_interp input --num_prolong_hi 1 \
     --color_transfer euclid --L_ct 500 --sig_gamma_ct 0.05
 
-python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.npy -o test-color-transfers \
-    --hist_interp euclid --num_prolong_hi 1 --gamma_hi 0.001 \
+python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.npy \
+    -o test-color-transfers --hist_interp euclid --num_prolong_hi 1 --gamma_hi 0.001 \
     --color_transfer euclid --L_ct 500 --sig_gamma_ct 0.05
 
-python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.npy -o test-color-transfers \
-    --hist_interp linear --num_prolong_hi 1 \
+python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.npy \
+    -o test-color-transfers --hist_interp linear --num_prolong_hi 1 \
     --color_transfer euclid --L_ct 500 --sig_gamma_ct 0.05
 ```
 
