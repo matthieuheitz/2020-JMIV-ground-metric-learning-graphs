@@ -9,7 +9,7 @@ Matthieu Heitz, Nicolas Bonneel, David Coeurjolly, Marco Cuturi, and Gabriel Pey
 - ##### Environment
 
 The conda GMLG environment can be set with:
-```
+```shell script
 conda env create -f environement.yml
 conda activate GMLG
 ```
@@ -46,7 +46,7 @@ In order to create your own histogram sequence (`.npy` files) in 2D, use one of 
 - ##### Learn a metric
 
 From an existing dataset:
-```
+```shell script
 # Generate Figure 3
 python ml_kinterp2.py data/toydataF3 -o test-F3 --loss_num 1 -L 50 --t_heat 3e-3 --k_heat 100 --metric_regul_ro 0 --metric_regul_ro_lap 0.03 --max_iter 1000 -f 20
 
@@ -66,7 +66,9 @@ python ml_kinterp2.py data/toydataF6 -o test-F6 --loss_num 2 -L 50 --t_heat 3e-3
 
 Learn a metric on the `seldovia2` dataset:
 
-`python ml_color_timelapse.py data/seldovia2 -o test-ml-color -n 16 --loss_num 2 -L 50 --t_heat 1e-3 --k_heat 20 --metric_regul_ro 0 --metric_regul_ro_lap 1 --max_iter 500 -f 50`
+```shell script
+python ml_color_timelapse.py data/seldovia2 -o test-ml-color -n 16 --loss_num 2 -L 50 --t_heat 1e-3 --k_heat 20 --metric_regul_ro 0 --metric_regul_ro_lap 1 --max_iter 500 -f 50
+```
 
 This script, contrary to the previous one (in 2D) doesn't require `.npy` files, you can directly give it images and
 it will compute the color histograms automatically.
@@ -89,7 +91,7 @@ the first task will be the same for all cases, so you don't want to redo it ever
 an interpolation and then test different color transfers using that same interpolation.
 
 Examples of how to use this script, to generate images of Figure 18.
-```
+```shell script
 # Performing both tasks in the same script:
 python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.npy -o test-color-transfers \
     --hist_interp input --num_prolong_hi 1 \
@@ -105,7 +107,7 @@ python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.np
 ```
 
 Example of how to use this script separately (testing parameters for color transfer)
-```
+```shell script
 # First, interpolation
 python ml_color_transfer.py "data/country1/*.png" test-ml-color/a-metric-0500.npy -o test-color-transfers \
     --only_interp --hist_interp input --num_prolong_hi 1
@@ -156,7 +158,7 @@ The script `ml_direct_transfer.py` allows to directly transfer the colors of one
 more target images.
 
 Examples:
-```
+```shell script
 # Transfer each image of seldovia2 on the first frame of country1 (last row of Figure 18)
 python ml_direct_transfer.py "data/seldovia2/*.png" "data/country1/video29.png" \
     -o test-direct-transfers --n 16 --L 500 --sig_gamma 0.05
