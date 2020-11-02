@@ -4,7 +4,7 @@ Code for the publication:
 
 Matthieu Heitz, Nicolas Bonneel, David Coeurjolly, Marco Cuturi, and Gabriel Peyré. "Ground Metric Learning on Graphs.", 2020
 
-#### Requirements
+## Requirements
 
 - ##### Environment
 
@@ -26,14 +26,14 @@ In order to have faster convolutions for color transfer, we use a native C imple
 Compile the `ckernels.c` by simply running `make` in the main directory, which will compile to a `libckernels.so`.
 
 
-#### Starter files:
+## Starter files:
 
 - `ml_kinterp2.py`: metric learning on a graph that is a 2D grid.
 - `ml_color_timelapse.py`: metric learning on a graph that is a 3D grid (for color histograms).
 
 Each of these scripts has arguments, which can be seen with the `-h` option.
 
-#### Learning on a 2-D grid
+## Learning on a 2-D grid
 
 - ##### Create a dataset
 
@@ -60,7 +60,7 @@ python ml_kinterp2.py data/toydataF5 -o test-F5 --loss_num 2 -L 50 --t_heat 3e-3
 python ml_kinterp2.py data/toydataF6 -o test-F6 --loss_num 2 -L 50 --t_heat 3e-3 --k_heat 100 --metric_regul_ro 0 --metric_regul_ro_lap 10 --max_iter 1000 -f 20
 ```
 
-#### Learning on a 3-D grid
+## Learning on a 3-D grid
 
 - ##### Learn a metric
 
@@ -150,7 +150,7 @@ filtering `interp-bbf-??.png`. The bilateral filtering is enabled by default.
 
 
 
-#### Direct transfer
+## Direct transfer
 
 The script `ml_direct_transfer.py` allows to directly transfer the colors of one or more source images onto one or
 more target images.
