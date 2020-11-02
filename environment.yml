@@ -1,0 +1,28 @@
+# Create a new environment
+#   conda env create -f environment.yml
+
+# You need to install pytorch separately after this
+# Install pytorch (see https://pytorch.org/get-started/locally/)
+# You need
+#   conda install pytorch torchvision cuda80 -c pytorch
+
+name: GMLG
+
+channels:
+
+dependencies:
+  # Essentials
+  - python>=3.6
+  - numpy
+  - scipy
+  - pytorch
+  - matplotlib
+  - imageio >=2.4.1   # 2.4.1 is the first version to have ignoregamma=True by default for PNGs
+  # Additionals
+  - networkx    # For plotting graphs
+  - opencv      # For computing histograms
+  - pip
+  # This is for solving sparse systems using Cholesky instead of LU (2x faster). It requires libcholmod.
+  # If only using LU, specify '--SD_algo LU' when using the scripts.
+  - pip:
+      - scikit-sparse
